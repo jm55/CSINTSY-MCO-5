@@ -12,9 +12,9 @@ class tile:
         self.s_dist = prev_tile.s_dist + 1
         return self.s_dist
     
-    def dist_g(self, g_x:int, g_y:int):
+    def dist_g(self, tile):
         """Compute tile's distance from g[x,y]"""
-        self.g_dist = get_manhattan((self.x, self.y), (g_x, g_y))
+        self.g_dist = get_manhattan((self.x, self.y), (tile.x, tile.y))
         return self.g_dist
 
     #Returns tile's x,y coor as tuple
@@ -37,6 +37,9 @@ class tile:
         """Returns the coordinate of this tile object"""
         return (self.x, self.y)
     
+    def updatePriority(self):
+        self.priority = self.s_dist + self.g_dist
+
     def __str__(self):
         return f"Type: {self.type} - x:{self.x} y:{self.y}"
         
